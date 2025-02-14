@@ -3,6 +3,7 @@ import nbformat
 import os
 import numpy as np
 import pandas as pd
+from IPython.display import display
 
 class TestAssignmentNotebook(unittest.TestCase):
     @classmethod
@@ -14,7 +15,9 @@ class TestAssignmentNotebook(unittest.TestCase):
         with open(notebook_path, "r", encoding="utf-8") as f:
             nb = nbformat.read(f, as_version=4)
         
-        cls.global_env = {}
+        cls.global_env = {
+            "display": display,
+        }
         
         for cell in nb.cells:
             if cell.cell_type == "code":
