@@ -15,7 +15,8 @@ class TestAssignmentNotebook(unittest.TestCase):
             nb = nbformat.read(f, as_version=4)
         
         cls.global_env = {}
-        
+
+
         for cell in nb.cells:
             if cell.cell_type == "code":
                 exec(cell.source, cls.global_env)
