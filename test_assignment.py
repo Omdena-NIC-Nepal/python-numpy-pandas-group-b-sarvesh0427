@@ -4,6 +4,7 @@ import os
 import numpy as np
 import pandas as pd
 
+
 class TestAssignmentNotebook(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
@@ -15,7 +16,7 @@ class TestAssignmentNotebook(unittest.TestCase):
             nb = nbformat.read(f, as_version=4)
         
         cls.global_env = {}
-        
+
         for cell in nb.cells:
             if cell.cell_type == "code":
                 exec(cell.source, cls.global_env)
@@ -35,7 +36,7 @@ class TestAssignmentNotebook(unittest.TestCase):
     def test_dataframe_columns(self):
         """Test if DataFrame contains required columns"""
         df = self.global_env.get("df", None)
-        required_columns = {"Name", "Age", "Score"}
+        required_columns = {"Name", "Age", "Salary"}
         self.assertIsNotNone(df, "df not found in notebook")
         self.assertTrue(required_columns.issubset(df.columns), "Missing required columns in df")
 
